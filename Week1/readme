@@ -1,0 +1,104 @@
+C Program to Add Two Complex Numbers by Passing Structure to a Function
+#include<stdio.h>
+struct complex
+{
+	int real,imag;
+};
+void add(struct complex c1,struct complex c2)
+{
+	printf("%d+i%d\n",c1.real+c2.real,c1.imag+c2.imag);
+}
+void sub(struct complex c1,struct complex c2)
+{
+	printf("%d-i%d\n",c1.real-c2.real,c1.imag-c2.imag);
+}
+void mul(struct complex c1,struct complex c2)
+{
+	int r =(c1.real*c2.real)-(c1.imag*c2.imag);
+	int i =(c1.real*c2.imag)+(c2.real*c1.imag);
+	printf("%d+i%d\n",r,i);
+}
+int main()
+{
+	struct complex c1,c2;
+	scanf("%d",&c1.real);
+	scanf("%d",&c1.imag);
+	scanf("%d",&c2.real);
+	scanf("%d",&c2.imag);
+	add(c1,c2);
+	sub(c1,c2);
+	mul(c1,c2);
+}
+
+
+C Program to Store Information of Students Using Structure
+#include<stdio.h>
+struct student
+{
+	char roll[15];
+	char name[30];
+	int m[5];
+};
+int main()
+{
+	struct student s[20];
+	int n,i,j;
+	float avg,sum=0;
+	char grade;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",s[i].roll);
+		scanf("%s",s[i].name);
+	        for(j=0;j<5;j++)
+	        {
+		        
+		        scanf("%d",&s[i].m[j]);
+		        sum = sum + s[i].m[j];
+	        }
+	        avg = sum/5.0;
+	        if(avg>=50.0)
+	        grade = 'A';
+	        else
+	        grade = 'B';
+                printf("roll=%s\tname=%s\tgrade=%c\n",s[i].roll,s[i].name,grade);
+	}
+}
+
+Write a C program to node with data and link using self referential structures
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node*link;
+};
+int main()
+{
+	struct node*s;
+	s=(struct node*)malloc(sizeof(struct node));
+	s->data=100;
+	s->link=NULL;
+	printf("data=%d",s->data);
+}
+
+Write a C program to node with data and two link using self referential structures
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node*prev;
+        struct node*next;
+};
+int main()
+{
+	struct node*s;
+	s=(struct node*)malloc(sizeof(struct node));
+	s->data=100;
+	s->prev=NULL;
+	s->next=NULL;
+	printf("data=%d",s->data);
+}
+
+
