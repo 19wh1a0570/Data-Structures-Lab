@@ -1,0 +1,337 @@
+// stack implementation using arrays
+#include<stdio.h>
+#include<stdlib.h>
+#define maxsize 5
+int a[maxsize],top=-1;
+void push(int item)
+{
+	top++;
+	a[top]=item;
+}
+int pop()
+{
+	return(a[top--]);
+}
+int isfull()
+{
+	if(top==maxsize-1)
+	return 1;
+	else
+	return 0;
+}
+int isempty()
+{
+	if(top==-1)
+	return 1;
+	else
+	return 0;
+}
+int peek()
+{
+	return(a[top]);
+}
+void display()
+{
+	for(int i=top;i>=0;i--)
+	printf("%d ",a[i]);
+}
+int main()
+{
+	int ch,x;
+	while(1)
+	{
+		printf("\n1-push\n2-pop\n3-display\n4-peek\n5-exit\n");
+		printf("enter ur choice\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+		case 1: if(isfull())
+			printf("stack overflow\n");
+			else
+			{
+			printf("enter data to push\n");
+			scanf("%d",&x);
+			push(x);
+			}
+			break;
+		case 2: if(isempty())
+			printf("stack underflow\n");
+			else
+			{
+			x=pop();
+			printf("deleted element is %d\n",x);
+			}
+			break;
+		case 3: display();
+			break;
+		case 4: printf("top most element on the stack is %d\n", peek());
+			break;
+		case 5: exit(0);
+		}
+	}
+}
+	
+C:\TDM-GCC-64\dslab>gcc stack1.c -o stack1
+
+C:\TDM-GCC-64\dslab>stack1
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+1
+enter data to push
+10
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+1
+enter data to push
+20
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+1
+enter data to push
+30
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+1
+enter data to push
+40
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+1
+enter data to push
+50
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+2
+deleted element is 50
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+4
+top most element on the stack is 40
+
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+3
+40 30 20 10
+1-push
+2-pop
+3-display
+4-peek
+5-exit
+enter ur choice
+5
+//stack implementation using sll
+#include<stdio.h>
+#include<stdlib.h>
+                                                 
+struct Node
+{
+   int data;
+   struct Node *link;
+}*top = NULL;
+
+void push();
+void pop();
+void display();
+void main()
+{
+   int choice, value;
+                                                    
+   printf("\n:: Stack using Linked List ::\n");
+   while(1){
+      printf("\n****** MENU ******\n");
+      printf("1. Push\n2. Pop\n3. Display\n4. Exit\n");
+      printf("Enter your choice: ");
+      scanf("%d",&choice);
+      switch(choice){
+	 case 1: push();
+		 break;
+	 case 2: pop(); break;
+	 case 3: display(); break;
+	 case 4: exit(0);
+      }
+   }
+}
+void push()
+{
+   struct Node *temp;
+   temp = (struct Node*)malloc(sizeof(struct Node));
+   printf("\nenter data of item:");
+   scanf("%d",&temp->data);
+   temp->link=top;
+   top=temp;
+}
+void pop()
+{
+   struct Node *temp ;
+   if(top == NULL)
+      printf("\nStack is Empty!!!\n");
+   else{
+      temp=top;
+      printf("\nDeleted element: %d", temp->data);
+      top = top->link;
+      free(temp);
+   }
+}
+void display()
+{
+   struct Node *temp;
+   temp=top;
+   if(top == NULL)
+      printf("\nStack is Empty!!!\n");
+   else{
+      
+      while(temp != NULL){
+	 printf("%d--->",temp->data);
+	 temp = temp ->link;
+      }
+      
+   }
+}    
+
+C:\TDM-GCC-64\dslab>gcc stack2.c -o stack2
+
+C:\TDM-GCC-64\dslab>stack2
+
+:: Stack using Linked List ::
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:10
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:20
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:30
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:40
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:50
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:60
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+
+enter data of item:70
+
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 2
+
+Deleted element: 70
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 2
+
+Deleted element: 60
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 2
+
+Deleted element: 50
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 3
+40--->30--->20--->10--->
+****** MENU ******
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 4
+
+
